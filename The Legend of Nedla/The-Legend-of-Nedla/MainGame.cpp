@@ -16,6 +16,7 @@ MainGame::~MainGame()
 void MainGame::run()
 {
 	initSystems();
+	gameLoop();
 }
 
 void MainGame::initSystems()
@@ -42,11 +43,11 @@ void MainGame::processInput()
 	{
 		switch (evnt.type)
 		{
-		case SDL_QuitEvent:
+		case SDL_QUIT:
 			_gameState = GameState::EXIT;
 			break;
-		case SDL_MouseMotionEvent:
-			std::cout << evnt.motion.x << " " << evnt.motion.y << std::endl;
+		case SDL_MOUSEMOTION:
+			std::cout << "ayy lmao" << evnt.motion.x << " " << evnt.motion.y << std::endl;
 			break;
 		}
 	}
