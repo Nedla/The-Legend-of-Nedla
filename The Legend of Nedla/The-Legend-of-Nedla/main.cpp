@@ -16,6 +16,7 @@
 
 #include <iostream>
 #include "MainGame.h"
+#include <SDL\SDL.h>
 
 //	Apparently when you run SDL.h it takes custody of the real main function.\
 //	You can call this one in the 'source' whatever you want but you need to add those arguments because\
@@ -25,7 +26,13 @@ int main(int argc, char** argv)	// char* is an array of characters, some people 
 	MainGame mainGame;
 	mainGame.run();
 
-	std::cin.get();
+	SDL_Window* window = mainGame.getWindow();
+	SDL_Surface* determined = SDL_LoadBMP("..\\deps\\det.bmp");
+	SDL_Surface* windowSurface = SDL_GetWindowSurface(window);
 
+	SDL_BlitSurface(determined, NULL, windowSurface, NULL);
+	SDL_UpdateWindowSurface(window);
+
+	std::cin.get();
 	return 0;
 }
