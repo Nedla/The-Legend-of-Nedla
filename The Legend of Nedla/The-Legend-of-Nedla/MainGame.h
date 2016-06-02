@@ -9,8 +9,8 @@ public:
 	~MainGame();
 
 	void run();
-
 	void initSystems();
+	SDL_Window* getWindow();
 
 private:
 	SDL_Window* _window;
