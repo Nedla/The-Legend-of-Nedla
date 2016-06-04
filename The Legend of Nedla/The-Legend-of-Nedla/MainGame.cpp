@@ -1,14 +1,15 @@
-#include "MainGame.h"
-
 #include <iostream>
 #include <string>
 
+#include "MainGame.h"
+#include "Sprite.h"
+
+//Error checker
 void fatalError(std::string errorString)
 {
 	std::cout << errorString << std::endl;
 	std::cout << "Enter any key to quit...";
-	int tmp;
-	std::cin >> tmp;
+	std::cin.get();
 	SDL_Quit();
 	exit(1);
 }
@@ -28,12 +29,15 @@ MainGame::~MainGame()
 void MainGame::run()
 {
 	initSystems();
+
+	_sprite.init(-1.0f, -1.0f, 1.0f, 1.0f);
+
 	gameLoop();
 }
 
 void MainGame::initSystems()
 {
-	//	Initialize SDL
+	//	Initialize SDL, window, check for loading errors and set background color
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	_window = SDL_CreateWindow("The Legend of Nedla", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _screenWidth, _screenHeight, SDL_WINDOW_OPENGL); // If the window creation fails it returns false
@@ -43,8 +47,8 @@ void MainGame::initSystems()
 		fatalError("SDL Window could not be created.");
 	}
 
-	SDL_GlContext glContex = SDL_GL_CreateContext(_window);
-	if (glContext == nullptr)
+	SDL_GLContext glContex = SDL_GL_CreateContext(_window);
+	if (glContex == nullptr)
 	{
 		fatalError("SDL_GL context could not be created.");
 	}
@@ -54,10 +58,9 @@ void MainGame::initSystems()
 	{
 		fatalError("GLEW IS NOT OK");
 	}
-
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	
-	glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+	
+	glClearColor(0.0f, 0.0f, 0.5f, 1.0f); //Set background color
 }
 
 void MainGame::gameLoop()
@@ -73,7 +76,7 @@ void MainGame::processInput()
 {
 	SDL_Event evnt;
 
-	while (SDL_PollEvent(&evnt))
+	while (SDL_PollEvent(&evnt)) //Why is this a call by reference?
 	{
 		switch (evnt.type)
 		{
@@ -89,8 +92,10 @@ void MainGame::processInput()
 
 void MainGame::drawGame()
 {
-	glClearDepth(1.0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearDepth(1.0); //Set base depth to 1.0
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //This line combines the two bits of data into one to save space. The color and depth buffers are cleared
+	
+	_sprite.draw();
 
-	SDL_GL_SwapWindow(_window);
+	SDL_GL_SwapWindow(_window); //Swap between active and buffer window
 }

@@ -1,5 +1,3 @@
 ﻿  MainGame.cpp
-c:\programming\visualstudioprojects\the legend of nedla\the-legend-of-nedla\maingame.cpp(46): error C2065: 'SDL_GlContext': undeclared identifier
-c:\programming\visualstudioprojects\the legend of nedla\the-legend-of-nedla\maingame.cpp(46): error C2146: syntax error: missing ';' before identifier 'glContex'
-c:\programming\visualstudioprojects\the legend of nedla\the-legend-of-nedla\maingame.cpp(46): error C2065: 'glContex': undeclared identifier
-c:\programming\visualstudioprojects\the legend of nedla\the-legend-of-nedla\maingame.cpp(47): error C2065: 'glContext': undeclared identifier
+  The-Legend-of-Nedla.vcxproj -> C:\Programming\VisualStudioProjects\The Legend of Nedla\Debug\The-Legend-of-Nedla.exe
+  The-Legend-of-Nedla.vcxproj -> C:\Programming\VisualStudioProjects\The Legend of Nedla\Debug\The-Legend-of-Nedla.pdb (Partial PDB)

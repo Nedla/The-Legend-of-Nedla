@@ -15,7 +15,9 @@
 */
 
 #include <iostream>
+
 #include "MainGame.h"
+#include "Sprite.h"
 
 //	Apparently when you run SDL.h it takes custody of the real main function.\
 //	You can call this one in the 'source' whatever you want but you need to add those arguments because\
